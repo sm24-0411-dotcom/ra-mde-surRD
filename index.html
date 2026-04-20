@@ -7,7 +7,7 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body { margin: 0; font-family: sans-serif; }
-        model-viewer { width: 100%; height: 90vh; background-color: #f5f5f5; }
+        model-viewer { width: 100%; height: 90vh; background-color: #d8d8d8; }
         .dot { display: block; width: 12px; height: 12px; border-radius: 50%; border: none; background-color: #ff3e3e; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         .label { background: #fff; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.25); color: rgba(0,0,0,0.8); font-family: sans-serif; font-size: 12px; font-weight: 700; padding: 4px 8px; position: absolute; transform: translate(10px, -20px); }
     </style>
@@ -15,13 +15,16 @@
 <body>
 
     <model-viewer 
-        id="mde-viewer"
-        src="VillaAltagracia_3D_optimized.glb" 
-        ar ar-modes="webxr scene-viewer quick-look" 
-        camera-controls 
-        shadow-intensity="1" 
-        auto-rotate
-        environment-image="neutral">
+        <model-viewer 
+    id="mde-viewer"
+    src="VillaAltagracia_3D_optimized.glb" 
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    shadow-intensity="2"
+    exposure="0.6"
+    auto-rotate
+    environment-image="legacy">
         
         <button class="dot" slot="hotspot-valle" data-position="0.2m 0.1m 0m" data-normal="0m 1m 0m">
             <div class="label">Punto de Interés Geomorfológico</div>
