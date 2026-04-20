@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RA MDE Sur RD - Test</title>
+  <title>RA MDE Sur RD</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
@@ -13,32 +13,41 @@
     }
 
     #map {
-      height: 100vh; /* 🔴 CLAVE para que no salga en blanco */
+      height: 100vh;   /* 🔴 CLAVE */
       width: 100%;
+    }
+
+    h1 {
+      position: absolute;
+      z-index: 1000;
+      background: white;
+      padding: 8px;
+      margin: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 
 <body>
 
+<h1>Visualización 3D (base MDE)</h1>
+
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-  // 📍 Centro República Dominicana
+  console.log("Inicializando mapa...");
+
   const map = L.map('map').setView([18.7357, -70.1627], 8);
 
-  // 🌍 Capa base (OpenStreetMap)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
+    attribution: '&copy; OSM'
   }).addTo(map);
 
-  // 📌 marcador de prueba
   L.marker([18.7357, -70.1627])
     .addTo(map)
-    .bindPopup("República Dominicana - Base del proyecto")
-    .openPopup();
+    .bindPopup("RD - Base del proyecto");
 </script>
 
 </body>
