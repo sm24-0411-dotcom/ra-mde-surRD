@@ -1,54 +1,45 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RA Geomorfología San Cristóbal</title>
+  <title>RA MDE Sur RD - Test</title>
 
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
-<style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#f2f2f2;
-text-align:center;
-}
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
 
-h1{
-font-size:20px;
-padding:10px;
-}
-
-model-viewer{
-width:100%;
-height:80vh;
-background:white;
-}
-
-p{
-padding:10px;
-}
-</style>
+    #map {
+      height: 100vh; /* 🔴 CLAVE para que no salga en blanco */
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>Geomorfología RA - San Cristóbal</h1>
+<div id="map"></div>
 
-<model-viewer
-src="modelo.glb"
-ar
-ar-modes="webxr scene-viewer quick-look"
-camera-controls
-auto-rotate
-shadow-intensity="1">
-<button slot="ar-button">
-Activar Realidad Aumentada
-</button>
-</model-viewer>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<p>Visualización 3D del terreno</p>
+<script>
+  // 📍 Centro República Dominicana
+  const map = L.map('map').setView([18.7357, -70.1627], 8);
+
+  // 🌍 Capa base (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  // 📌 marcador de prueba
+  L.marker([18.7357, -70.1627])
+    .addTo(map)
+    .bindPopup("República Dominicana - Base del proyecto")
+    .openPopup();
+</script>
 
 </body>
 </html>
