@@ -1,114 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>RA Geomática - Sur RD</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RA Geomática - Sur RD</title>
 
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f2f2f2;
+}
 
-        model-viewer {
-            width: 100%;
-            height: 90vh;
-            background: linear-gradient(to bottom, #dfe9f3, #ffffff);
-        }
+model-viewer{
+    width:100%;
+    height:90vh;
+    background:#e8e8e8;
+}
 
-        .dot {
-            display: block;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 2px solid white;
-            background-color: #d62828;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.45);
-            cursor: pointer;
-        }
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    border:none;
+    background:#d62828;
+    box-shadow:0 2px 6px rgba(0,0,0,.35);
+}
 
-        .label {
-            background: rgba(255,255,255,0.96);
-            border-radius: 6px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.20);
-            color: #222;
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1.3;
-            padding: 6px 10px;
-            position: absolute;
-            transform: translate(12px, -22px);
-            min-width: 210px;
-        }
+.label{
+    background:white;
+    color:#111;
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:12px;
+    font-weight:bold;
+    white-space:nowrap;
+    transform:translate(12px,-18px);
+    box-shadow:0 2px 8px rgba(0,0,0,.20);
+}
 
-        .ar-btn {
-            background-color: white;
-            border-radius: 10px;
-            border: none;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 12px 16px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.20);
-            cursor: pointer;
-        }
+.ar-btn{
+    position:absolute;
+    top:16px;
+    right:16px;
+    border:none;
+    padding:12px 16px;
+    border-radius:8px;
+    background:white;
+    font-weight:bold;
+    box-shadow:0 3px 8px rgba(0,0,0,.25);
+}
 
-        .footer {
-            padding: 12px;
-            text-align: center;
-            background: #003366;
-            color: white;
-        }
+.footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:12px;
+}
 
-        .footer h2 {
-            margin: 0;
-            font-size: 1.1em;
-        }
+.footer h2{
+    margin:0;
+    font-size:1.1rem;
+}
 
-        .footer p {
-            margin: 6px 0 0;
-            font-size: 0.85em;
-        }
-    </style>
+.footer p{
+    margin:6px 0 0;
+    font-size:.85rem;
+}
+</style>
 </head>
 
 <body>
 
 <model-viewer
-    id="mde-viewer"
-    src="VillaAltagracia_3D_optimized.glb"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    camera-controls
-    auto-rotate
-    shadow-intensity="1.2"
-    environment-image="neutral">
+src="VillaAltagracia_3D_optimized.glb"
+ar
+ar-modes="webxr scene-viewer quick-look"
+camera-controls
+auto-rotate
+shadow-intensity="1"
+environment-image="neutral">
 
-    <button
-        class="dot"
-        slot="hotspot-valle"
-        data-position="0.2m 0.1m 0m"
-        data-normal="0m 1m 0m">
+<button
+class="dot"
+slot="hotspot-1"
+data-position="0.1m 0.08m 0m"
+data-normal="0m 1m 0m">
 
-        <div class="label">
-            Morfología en zona de montaña de la provincia San Cristóbal
-        </div>
-    </button>
+<div class="label">
+Morfología en zona de montaña de la provincia San Cristóbal
+</div>
 
-    <button slot="ar-button" class="ar-btn">
-        📱 Activar Realidad Aumentada
-    </button>
+</button>
+
+<button slot="ar-button" class="ar-btn">
+📱 Activar Realidad Aumentada
+</button>
 
 </model-viewer>
 
 <div class="footer">
-    <h2>Visualización Inmersiva de la Geomorfología Dominicana</h2>
-    <p>Trabajo Final · Principios Prácticos de la Geomática · UNPHU</p>
+<h2>Visualización Inmersiva de la Geomorfología Dominicana</h2>
+<p>Trabajo Final · Principios Prácticos de la Geomática · UNPHU</p>
 </div>
 
 </body>
