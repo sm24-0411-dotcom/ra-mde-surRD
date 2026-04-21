@@ -15,7 +15,6 @@
       background-color: #e8e0d0;
     }
 
-    /* Botón RA */
     #ar-btn {
       position: absolute;
       bottom: 20px;
@@ -30,7 +29,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
 
-    /* Etiquetas hotspot */
     .hotspot-label {
       background: rgba(20, 20, 40, 0.88);
       color: #fff;
@@ -45,9 +43,7 @@
       align-items: center;
       gap: 6px;
     }
-    .hotspot-label .icon {
-      font-size: 16px;
-    }
+    .hotspot-label .icon { font-size: 16px; }
     .hotspot-label .sub {
       font-size: 11px;
       font-weight: normal;
@@ -55,7 +51,6 @@
       display: block;
     }
 
-    /* Línea del hotspot */
     button[slot^="hotspot"] {
       background: none;
       border: none;
@@ -73,7 +68,6 @@
       margin: auto;
     }
 
-    /* Leyenda de pendiente */
     #legend {
       position: absolute;
       bottom: 20px;
@@ -82,7 +76,7 @@
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 10px;
       padding: 12px 14px;
-      min-width: 170px;
+      min-width: 180px;
     }
     #legend h4 {
       font-size: 13px;
@@ -104,7 +98,11 @@
       font-size: 11px;
       color: #ccc;
       margin-bottom: 10px;
+      gap: 4px;
     }
+    .legend-labels span { flex: 1; text-align: center; }
+    .legend-labels span:first-child { text-align: left; }
+    .legend-labels span:last-child  { text-align: right; }
     .legend-row {
       display: flex;
       align-items: center;
@@ -120,7 +118,6 @@
       flex-shrink: 0;
     }
 
-    /* Info panel superior */
     #info-bar {
       position: absolute;
       top: 12px;
@@ -132,6 +129,7 @@
       padding: 8px 20px;
       text-align: center;
       pointer-events: none;
+      white-space: nowrap;
     }
     #info-bar h3 {
       font-size: 14px;
@@ -158,12 +156,11 @@
   shadow-intensity="1"
   exposure="1.1">
 
-  <!-- Botón RA -->
   <button id="ar-btn" slot="ar-button">📱 Ver en RA</button>
 
-  <!-- Hotspot 1: Zona montañosa norte -->
+  <!-- Hotspot 1: Zona montañosa Norte -->
   <button slot="hotspot-1"
-    data-position="0 0.8 0"
+    data-position="0.05 0.35 0.05"
     data-normal="0 1 0"
     data-visibility-attribute="visible">
     <div class="hotspot-label">
@@ -175,9 +172,9 @@
     </div>
   </button>
 
-  <!-- Hotspot 2: Zona montañosa sur -->
+  <!-- Hotspot 2: Zona montañosa Sur -->
   <button slot="hotspot-2"
-    data-position="0 0.6 -0.6"
+    data-position="-0.2 0.25 -0.1"
     data-normal="0 1 0"
     data-visibility-attribute="visible">
     <div class="hotspot-label">
@@ -189,9 +186,9 @@
     </div>
   </button>
 
-  <!-- Hotspot 3: Valle o zona baja -->
+  <!-- Hotspot 3: Zona baja / Valle -->
   <button slot="hotspot-3"
-    data-position="0.5 0.1 0.3"
+    data-position="0.2 0.05 0.1"
     data-normal="0 1 0"
     data-visibility-attribute="visible">
     <div class="hotspot-label">
@@ -203,43 +200,38 @@
     </div>
   </button>
 
-  <!-- Panel de info superior -->
-  <div id="info-bar" slot="progress-bar" style="display:none"></div>
+  <div id="info-bar">
+    <h3>Modelo Digital de Elevación · San Cristóbal, RD</h3>
+    <p>Área 10 × 10 km · Elevación: 135 – 1,402 msnm · Arrastra para rotar · Pellizca para zoom</p>
+  </div>
+
+  <div id="legend">
+    <h4>Pendiente del relieve</h4>
+    <div class="legend-bar"></div>
+    <div class="legend-labels">
+      <span>Suave (0°)</span>
+      <span>Moderada</span>
+      <span>Abrupta (45°+)</span>
+    </div>
+    <div class="legend-row">
+      <div class="legend-swatch" style="background:#1a9641"></div>
+      <span>0° – 10° &nbsp; Llano</span>
+    </div>
+    <div class="legend-row">
+      <div class="legend-swatch" style="background:#ffffbf; border:1px solid #ccc"></div>
+      <span>10° – 25° &nbsp; Moderado</span>
+    </div>
+    <div class="legend-row">
+      <div class="legend-swatch" style="background:#fdae61"></div>
+      <span>25° – 35° &nbsp; Empinado</span>
+    </div>
+    <div class="legend-row">
+      <div class="legend-swatch" style="background:#d7191c"></div>
+      <span>&gt; 35° &nbsp;&nbsp;&nbsp; Abrupto</span>
+    </div>
+  </div>
 
 </model-viewer>
-
-<!-- Panel info fijo -->
-<div id="info-bar">
-  <h3>Modelo Digital de Elevación · San Cristóbal, RD</h3>
-  <p>Área 10 × 10 km · Elevación: 135 – 1,402 msnm · Arrastra para rotar · Pellizca para zoom</p>
-</div>
-
-<!-- Leyenda de pendiente -->
-<div id="legend">
-  <h4>Pendiente del relieve</h4>
-  <div class="legend-bar"></div>
-  <div class="legend-labels">
-    <span>Suave (0°)</span>
-    <span>Moderada</span>
-    <span>Abrupta (45°+)</span>
-  </div>
-  <div class="legend-row">
-    <div class="legend-swatch" style="background:#1a9641"></div>
-    <span>0° – 10° · Llano</span>
-  </div>
-  <div class="legend-row">
-    <div class="legend-swatch" style="background:#ffffbf"></div>
-    <span>10° – 25° · Moderado</span>
-  </div>
-  <div class="legend-row">
-    <div class="legend-swatch" style="background:#fdae61"></div>
-    <span>25° – 35° · Empinado</span>
-  </div>
-  <div class="legend-row">
-    <div class="legend-swatch" style="background:#d7191c"></div>
-    <span>> 35° · Abrupto</span>
-  </div>
-</div>
 
 <script>
   const mv = document.getElementById('mv');
