@@ -3,46 +3,253 @@
 <head>
   <title>RA Geomática - Sur RD</title>
   <meta charset="utf-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
   <style>
-    body { margin: 0; font-family: sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #1a1a2e; color: #fff; }
 
     model-viewer {
       width: 100%;
-      height: 90vh;
-      background-color: #f0f0f0;
+      height: 88vh;
+      background-color: #e8e0d0;
     }
 
-    .info {
-      padding: 10px;
+    /* Botón RA */
+    #ar-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #2c7873;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* Etiquetas hotspot */
+    .hotspot-label {
+      background: rgba(20, 20, 40, 0.88);
+      color: #fff;
+      border: 1.5px solid #ffd700;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hotspot-label .icon {
+      font-size: 16px;
+    }
+    .hotspot-label .sub {
+      font-size: 11px;
+      font-weight: normal;
+      color: #ccc;
+      display: block;
+    }
+
+    /* Línea del hotspot */
+    button[slot^="hotspot"] {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: default;
+    }
+    button[slot^="hotspot"]::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ffd700;
+      border: 2px solid white;
+      margin: auto;
+    }
+
+    /* Leyenda de pendiente */
+    #legend {
+      position: absolute;
+      bottom: 20px;
+      left: 16px;
+      background: rgba(20, 20, 40, 0.9);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      min-width: 170px;
+    }
+    #legend h4 {
+      font-size: 13px;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .legend-bar {
+      width: 100%;
+      height: 14px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #1a9641, #a6d96a, #ffffbf, #fdae61, #d7191c);
+      margin-bottom: 4px;
+    }
+    .legend-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #ddd;
+    }
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Info panel superior */
+    #info-bar {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 20, 40, 0.85);
+      border: 1px solid rgba(255,215,0,0.4);
+      border-radius: 8px;
+      padding: 8px 20px;
       text-align: center;
+      pointer-events: none;
+    }
+    #info-bar h3 {
+      font-size: 14px;
+      color: #ffd700;
+      margin-bottom: 2px;
+    }
+    #info-bar p {
+      font-size: 11px;
+      color: #aaa;
     }
   </style>
 </head>
-
 <body>
 
 <model-viewer
-  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+  id="mv"
+  src="https://raw.githubusercontent.com/sm24-0411-dotcom/ra-mde-surRD/main/MDE_RA.glb"
   ar
   ar-modes="webxr scene-viewer quick-look"
   camera-controls
   auto-rotate
-  shadow-intensity="1">
+  auto-rotate-delay="3000"
+  rotation-per-second="20deg"
+  shadow-intensity="1"
+  exposure="1.1">
 
-  <button slot="ar-button"
-    style="position:absolute; top:16px; right:16px; padding:10px;">
-    Activar RA
+  <!-- Botón RA -->
+  <button id="ar-btn" slot="ar-button">📱 Ver en RA</button>
+
+  <!-- Hotspot 1: Zona montañosa norte -->
+  <button slot="hotspot-1"
+    data-position="0 0.8 0"
+    data-normal="0 1 0"
+    data-visibility-attribute="visible">
+    <div class="hotspot-label">
+      <span class="icon">⛰</span>
+      <div>
+        Zona montañosa Norte
+        <span class="sub">Pendiente alta · >30°</span>
+      </div>
+    </div>
   </button>
+
+  <!-- Hotspot 2: Zona montañosa sur -->
+  <button slot="hotspot-2"
+    data-position="0 0.6 -0.6"
+    data-normal="0 1 0"
+    data-visibility-attribute="visible">
+    <div class="hotspot-label">
+      <span class="icon">⛰</span>
+      <div>
+        Zona montañosa Sur
+        <span class="sub">Área de interés geomorfológico</span>
+      </div>
+    </div>
+  </button>
+
+  <!-- Hotspot 3: Valle o zona baja -->
+  <button slot="hotspot-3"
+    data-position="0.5 0.1 0.3"
+    data-normal="0 1 0"
+    data-visibility-attribute="visible">
+    <div class="hotspot-label">
+      <span class="icon">📍</span>
+      <div>
+        Zona baja / Valle
+        <span class="sub">~135 msnm · pendiente suave</span>
+      </div>
+    </div>
+  </button>
+
+  <!-- Panel de info superior -->
+  <div id="info-bar" slot="progress-bar" style="display:none"></div>
 
 </model-viewer>
 
-<div class="info">
-  <h3>Modelo Digital de Elevación - Sur RD</h3>
-  <p>Vista inmersiva en Realidad Aumentada</p>
+<!-- Panel info fijo -->
+<div id="info-bar">
+  <h3>Modelo Digital de Elevación · San Cristóbal, RD</h3>
+  <p>Área 10 × 10 km · Elevación: 135 – 1,402 msnm · Arrastra para rotar · Pellizca para zoom</p>
 </div>
+
+<!-- Leyenda de pendiente -->
+<div id="legend">
+  <h4>Pendiente del relieve</h4>
+  <div class="legend-bar"></div>
+  <div class="legend-labels">
+    <span>Suave (0°)</span>
+    <span>Moderada</span>
+    <span>Abrupta (45°+)</span>
+  </div>
+  <div class="legend-row">
+    <div class="legend-swatch" style="background:#1a9641"></div>
+    <span>0° – 10° · Llano</span>
+  </div>
+  <div class="legend-row">
+    <div class="legend-swatch" style="background:#ffffbf"></div>
+    <span>10° – 25° · Moderado</span>
+  </div>
+  <div class="legend-row">
+    <div class="legend-swatch" style="background:#fdae61"></div>
+    <span>25° – 35° · Empinado</span>
+  </div>
+  <div class="legend-row">
+    <div class="legend-swatch" style="background:#d7191c"></div>
+    <span>> 35° · Abrupto</span>
+  </div>
+</div>
+
+<script>
+  const mv = document.getElementById('mv');
+  mv.addEventListener('load', () => {
+    console.log('Modelo cargado correctamente');
+  });
+  mv.addEventListener('error', (e) => {
+    console.error('Error cargando modelo:', e);
+  });
+</script>
 
 </body>
 </html>
